@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.ShoppingCartItemMapper">
+
+    <resultMap id="ShopItemResultMap" type="com.example.unifyEntity.ShoppingCartItem">
+        <result column="gi_id" javaType="Integer"  property="shoppingCartItemId" />
+        <result column="t_id" javaType="Integer" property="productId" />
+        <result column="sc_id" javaType="Integer" property="shoppingCartId" />
+        <result column="gs_id" javaType="Integer"  property="productSpecificationId" />
+        <result column="t_num" javaType="Long" property="number" />
+        <result column="gi_time" javaType="Date" property="enterTime" />
+        <result column="state" javaType="Integer"  property="state" />
+        <result column="final_pay" javaType="BigDecimal" property="finalPrice" />
+        <result column="total_prirce" javaType="BigDecimal" property="totalPrice" />
+    </resultMap>
+
+    <select id="findByUid" parameterType="Integer" resultMap="ShopItemResultMap">
+        SELECT * FROM goods_item WHERE sc_id=(SELECT sc_id FROM shop_cart WHERE u_id=#{id} )
+    </select>
+
+    <delete id="deleteByUId" parameterType="Integer">
+        delete from goods_item where sc_id=(SELECT sc_id FROM shop_cart WHERE u_id=#{id})
+    </delete>
+
+    <insert id="addShopItem" parameterType="com.example.unifyEntity.ShoppingCartItem">
+        insert into goods_item values (null,#{t_id},#{sc_id},#{gs_id},#{t_num},
+        #{gi_time},#{state},#{final_pay},#{total_prirce})
+    </insert>
+
+
+</mapper>

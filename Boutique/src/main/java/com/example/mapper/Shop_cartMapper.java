@@ -1,10 +1,14 @@
 package com.example.mapper;
 
-import com.example.entity.Shop_cart;
+import com.example.unifyEntity.ShoppingCart;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface Shop_cartMapper {
 
-    Shop_cart SelectById(int id);
+    ShoppingCart SelectById(int id);
+    List<ShoppingCart> findAll(int id);
+    void DeleteById(int id);
 }
