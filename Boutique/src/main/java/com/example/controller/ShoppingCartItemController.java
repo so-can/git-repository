@@ -32,8 +32,8 @@ public class ShoppingCartItemController {
         return "index";
     }
 
-    @RequestMapping("/add/{productid}/{psid}/{num}")
-    public String addShop(@PathVariable int productid,@PathVariable int psid,@PathVariable int num){
+    @RequestMapping("/add")
+    public String addShop(@RequestParam int productid,@RequestParam int psid,@RequestParam int num){
         shoppingCartItemService.addShopItem(productid,psid,num);
         return "index";
     }

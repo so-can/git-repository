@@ -1,10 +1,13 @@
 package com.example.service;
 
 import com.example.mapper.Shop_cartMapper;
+import com.example.unifyEntity.Admin;
 import com.example.unifyEntity.ShoppingCart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,21 +17,21 @@ public class Shop_cartService {
     @Autowired
     Shop_cartMapper shop_cartMapper;
 
-    public ShoppingCart getShop_cartById(int id){
+    @Autowired
+    HttpServletRequest request;
 
-        return shop_cartMapper.SelectById(id);
-    }
-    public List<ShoppingCart> getShop_cart(int id){
-        List<ShoppingCart> listshop_cart=new ArrayList(id);
-        listshop_cart=shop_cartMapper.findAll(id);
-        System.out.println("ser============"+listshop_cart);
-        return listshop_cart;
-    }
+    public void addCartByUid(){
 
+        ShoppingCart shoppingCart=new ShoppingCart();
+        HttpSession session=request.getSession();
+        Admin admin=(Admin) request.getAttribute("Admin");
+        shoppingCart.setUserId(admin.getUserId());
 
-    public void delShop_cartById(int id){
+//        ShoppingCart shoppingCart=new ShoppingCart();
+//        shoppingCart.setUserId(3);
 
-        shop_cartMapper.DeleteById(id);
+        shop_cartMapper.insertCart(shoppingCart);
+
     }
 
 }

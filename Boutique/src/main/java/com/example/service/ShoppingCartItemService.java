@@ -62,23 +62,23 @@ public class ShoppingCartItemService {
 //        shoppingCartItem.setTotalPrice();
 
         shoppingCartItem.setProductId(3);
-        shoppingCartItem.setProductSpecificationId(1);
+ //       shoppingCartItem.setProductSpecificationId(1);
         shoppingCartItem.setNumber(3);
         shoppingCartItem.setEnterTime(new Date());
         shoppingCartItem.setState(1);
 
+
         BigDecimal bigDecimal=new BigDecimal("100");
         shoppingCartItem.setTotalPrice(bigDecimal);
-        BigDecimal bigDecimal1=new BigDecimal("0.8*bigDecimal");
+
+        BigDecimal b=new BigDecimal(0.8);
+        BigDecimal bigDecimal1=b.multiply(bigDecimal) ;
         shoppingCartItem.setFinalPrice(bigDecimal1);
         HttpSession session=request.getSession();
-        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-        if (cart == null) {
-            cart = new ShoppingCart();
-        }
-        shoppingCartItem.setNumber(cart.getNumber());
 
+        shoppingCartItem.setNumber(12);
 
+        shoppingCartItemMapper.addShopItem(shoppingCartItem);
 
 
 

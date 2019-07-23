@@ -23,8 +23,8 @@
     </delete>
 
     <insert id="addShopItem" parameterType="com.example.unifyEntity.ShoppingCartItem">
-        insert into goods_item values (null,#{t_id},#{sc_id},#{gs_id},#{t_num},
-        #{gi_time},#{state},#{final_pay},#{total_prirce})
+        insert into goods_item values (null,#{productId},#{shoppingCartId},#{productSpecificationId},#{number},
+        #{enterTime},#{state},#{finalPrice},#{totalPrice})
     </insert>
 
 

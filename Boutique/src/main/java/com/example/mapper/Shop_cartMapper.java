@@ -8,7 +8,5 @@ import java.util.List;
 @Repository
 public interface Shop_cartMapper {
 
-    ShoppingCart SelectById(int id);
-    List<ShoppingCart> findAll(int id);
-    void DeleteById(int id);
+    void insertCart(ShoppingCart shoppingCart);
 }

@@ -19,6 +19,6 @@ public interface ShoppingCartItemMapper {
     /*
     通过
      */
-    void addShopItem(ShoppingCartItemMapper shoppingCartItemMapper);
+    void addShopItem(ShoppingCartItem shoppingCartItem);
 
 }
